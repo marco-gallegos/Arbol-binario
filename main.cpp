@@ -8,9 +8,25 @@ void show_int(int to_show)
     return;
 }
 
+
 int main()
 {
     BinarySearchTree<int> *arbolint = new BinarySearchTree<int>();
+
+    //hardcodeo solo para probar :v
+    //esto no se hace :v
+    arbolint->Insert(100);
+    //right side
+    arbolint->Insert(150);
+    arbolint->Insert(140);
+    arbolint->Insert(145);
+
+    //left side
+    arbolint->Insert(50);
+    arbolint->Insert(60);
+    arbolint->Insert(55);
+
+
     int opc = 0;
     int aux_int = 0;
     while(opc!=9)
@@ -24,6 +40,9 @@ int main()
             arbolint->Insert(aux_int);
             break;
         case 2:
+            cout<<"numero a borrar -> ";
+            cin>>aux_int;cin.ignore();
+            arbolint->Delete(aux_int);
             break;
         case 3:
             arbolint->in_orden(show_int);
