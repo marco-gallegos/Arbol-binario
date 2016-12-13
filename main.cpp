@@ -19,7 +19,10 @@ int main()
     //right side
     arbolint->Insert(150);
     arbolint->Insert(140);
-    arbolint->Insert(145);
+    arbolint->Insert(142);
+    arbolint->Insert(141);
+    arbolint->Insert(143);
+    arbolint->Insert(144);
 
     //left side
     arbolint->Insert(50);
@@ -31,7 +34,7 @@ int main()
     int aux_int = 0;
     while(opc!=9)
     {
-        cout<<"1 - insert\t2 - delete\t3 - inorden\t9-salir"<<endl;
+        cout<<"1 - insert\t2 - delete\t3 - inorden\t4 - iterar\t9-salir"<<endl;
         cin>>opc;cin.ignore();
         switch (opc) {
         case 1:
@@ -47,6 +50,9 @@ int main()
         case 3:
             arbolint->in_orden(show_int);
             cout<<endl;
+            break;
+        case 4:
+            arbolint->iterate();
             break;
         default:
             cout<<"invalido"<<endl;

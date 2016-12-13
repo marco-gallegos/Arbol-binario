@@ -32,11 +32,13 @@ public:
     bool Del(DATO a_borrar, Nodo<DATO> *actual, Nodo<DATO> *ant = NULL);
 
 
-    void trim(DATO to_del);
+    void trim(Nodo<DATO> *nodo);
 
     void in_orden(void (* func)(DATO),Nodo<DATO> *nodo = NULL, bool root = true);
 
     int deepness();
+
+    void iterate();
 };
 
 template<class DATO>  bool BinarySearchTree<DATO>::Empty(const Nodo<DATO> *nod)
@@ -160,6 +162,16 @@ template<class DATO> bool BinarySearchTree<DATO>::Del(DATO a_borrar,Nodo<DATO> *
     return false;
 }
 
+template<class DATO> void BinarySearchTree<DATO>::trim(Nodo<DATO> *nodo)
+{
+    if(nodo){
+        trim(nodo->izquierdo);
+        trim(nodo->derecho);
+        delete nodo;
+        nodo = NULL;
+    }
+}
+
 template<class DATO> void BinarySearchTree<DATO>::in_orden(void (* func)(DATO),Nodo<DATO> *nodo, bool root){
     if(root){
         nodo=this->root;
@@ -170,5 +182,36 @@ template<class DATO> void BinarySearchTree<DATO>::in_orden(void (* func)(DATO),N
     func(nodo->valor);
     if(nodo->der != NULL){
         in_orden(func, nodo->der,false);
+    }
+}
+
+template<class DATO> void BinarySearchTree<DATO>::iterate(){
+    Nodo<DATO> *it = this->root;
+    int opc = 0;
+    while(opc != 8){
+        cout<<it->valor<<endl;
+        cout<<"1 der\t2 izq"<<endl;
+        cin>>opc;cin.ignore();
+        switch (opc) {
+        case 1:
+            if(it->der != NULL){
+                it = it->der;
+            }
+            else{
+                cout<<"no hay "<<endl;
+            }
+            break;
+        case 2:
+            if(it->izq != NULL){
+                it = it->izq;
+            }
+            else {
+                cout<<"no hay "<<endl;
+            }
+            break;
+        default:
+            cout<<"opcion invalida";
+            break;
+        }
     }
 }
