@@ -19,6 +19,7 @@ int main()
     //right side
     arbolint->Insert(150);
     arbolint->Insert(140);
+    arbolint->Insert(139);
     arbolint->Insert(142);
     arbolint->Insert(141);
     arbolint->Insert(143);
@@ -53,6 +54,9 @@ int main()
             break;
         case 4:
             arbolint->iterate();
+            break;
+        case 9:
+
             break;
         default:
             cout<<"invalido"<<endl;

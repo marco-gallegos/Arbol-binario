@@ -18,7 +18,7 @@ template<class DATO> class BinarySearchTree
 {
 public:
     BinarySearchTree():root(NULL){}
-    ~BinarySearchTree(){}
+    ~BinarySearchTree(){trim(root);}
 
     Nodo<DATO> *root;
 
@@ -107,16 +107,18 @@ template<class DATO> bool BinarySearchTree<DATO>::Del(DATO a_borrar,Nodo<DATO> *
     //buscamos el elemento
     while(it->valor != a_borrar){
         if(a_borrar < it->valor){
+            if (it->izq == NULL) {
+                return 0;
+            }
             anterior=it;
             it = it->izq;
         }
         if(a_borrar > it->valor){
+            if (it->der == NULL) {
+                return 0;
+            }
             anterior = it;
             it = it->der;
-        }
-        //si no se encuentra regresamos false
-        if(it->der == NULL && it->izq == NULL && it->valor != a_borrar){
-            return false;
         }
     }
 
@@ -190,7 +192,7 @@ template<class DATO> void BinarySearchTree<DATO>::iterate(){
     int opc = 0;
     while(opc != 8){
         cout<<it->valor<<endl;
-        cout<<"1 der\t2 izq"<<endl;
+        cout<<"1 der\t2 izq\t\t8 exit"<<endl;
         cin>>opc;cin.ignore();
         switch (opc) {
         case 1:
@@ -208,6 +210,8 @@ template<class DATO> void BinarySearchTree<DATO>::iterate(){
             else {
                 cout<<"no hay "<<endl;
             }
+            break;
+        case 9:
             break;
         default:
             cout<<"opcion invalida";
