@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+# elemetos de qtcreator
+*.pro.user.*
