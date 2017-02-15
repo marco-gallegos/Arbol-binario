@@ -50,8 +50,7 @@ template<class DATO>  bool BinarySearchTree<DATO>::is_leaf(Nodo<DATO> *nod){
     return (nod->der == NULL && nod->izq == NULL);
 }
 
-template<class DATO> bool BinarySearchTree<DATO>::Insert( DATO to_insert)
-{
+template<class DATO> bool BinarySearchTree<DATO>::Insert( DATO to_insert){
     if (Empty(this->root)) {
         this->root = new Nodo<DATO>(to_insert);
         return true;
@@ -86,6 +85,24 @@ template<class DATO> bool BinarySearchTree<DATO>::Insert( DATO to_insert)
 
     return false;
 }
+
+template<class DATO> bool BinarySearchTree<DATO>::is_in_tree(DATO to_search){
+    Nodo<DATO> *it = this->head;
+    while (it->valor != to_search) {
+        if (to_search < it->valor) {
+            if(it->izq != NULL)
+                return false;
+            it = it ->izq;
+        }
+        if (to_search < it->valor) {
+            if(it->der != NULL)
+                return false;
+            it = it ->der;
+        }
+    }
+    return true;
+}
+
 
 template<class DATO> bool BinarySearchTree<DATO>::Delete(DATO a_borrar){
     bool res = Del(a_borrar,this->root);
